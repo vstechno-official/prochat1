@@ -1,0 +1,92 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #36393f;
+    color: #ffffff;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"],
+  textarea {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #40444b;
+    color: #ffffff;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #7289da;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #677bc4;
+  }
+  
+  .messages {
+    overflow-y: auto;
+    max-height: 400px;
+  }
+  
+  .messages div {
+    background-color: #40444b;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .messages div strong {
+    font-weight: 500;
+  }
+  
+  /* Scrollbar styling for Firefox */
+  .messages::-webkit-scrollbar {
+    width: 10px;
+    background-color: #40444b;
+  }
+  
+  .messages::-webkit-scrollbar-thumb {
+    background-color: #7289da;
+  }
+  
+  /* Scrollbar styling for Chrome, Edge, and Safari */
+  .messages::-webkit-scrollbar-thumb:vertical {
+    background-color: #7289da;
+  }
+  
+  .messages::-webkit-scrollbar-thumb:hover {
+    background-color: #677bc4;
+  }
+  

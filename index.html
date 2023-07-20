@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prochat</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>Prochat</h1>
+  <div>
+    <input type="text" id="username" placeholder="Enter your username"><br><br>
+    <textarea id="message" placeholder="Type your message"></textarea><br><br>
+    <button onclick="postMessage()">Post</button>
+  </div>
+  <div id="messages"></div>
+
+  <script>
+    function postMessage() {
+      const username = document.getElementById('username').value;
+      const message = document.getElementById('message').value;
+  
+      fetch('/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: `username=${encodeURIComponent(username)}&message=${encodeURIComponent(message)}`
+      })
+      .then(response => response.text())
+      .then(response => {
+        console.log(response);
+        document.getElementById('message').value = ''; // Clear the message input after posting
+        fetchMessages(); // Fetch messages again after posting
+      })
+      .catch(error => console.error(error));
+    }
+  
+    function fetchMessages() {
+    fetch('/posts')
+    .then(response => response.json())
+    .then(posts => {
+      const messagesDiv = document.getElementById('messages');
+      messagesDiv.innerHTML = ''; // Clear previous messages before updating
+      posts.forEach(post => {
+        const messageDiv = document.createElement('div');
+        messageDiv.innerHTML = `<strong>${post.username}:</strong> ${post.message}`;
+        messagesDiv.appendChild(messageDiv);
+      });
+    })
+    .catch(error => console.error(error));
+  }
+
+  // Fetch messages on page load and set an interval to fetch messages every 2 seconds
+  fetchMessages();
+  setInterval(fetchMessages, 2000);
+  </script>
+  
+</body>
+</html>
